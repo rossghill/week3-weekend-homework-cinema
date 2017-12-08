@@ -22,9 +22,12 @@ class Ticket
   end
 
   # Read records
-  # def self.all()
-  #
-  # end
+  def self.all()
+    sql = "SELECT * FROM tickets"
+    all_tickets_hash = SqlRunner.run(sql)
+    result = all_tickets_hash.map { |ticket| Ticket.new(ticket) }
+    return result
+  end
 
   # Delete records
   # def self.delete_all()

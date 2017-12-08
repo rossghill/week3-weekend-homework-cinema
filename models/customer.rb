@@ -18,16 +18,27 @@ attr_accessor :name, :funds
           VALUES ($1, $2)
           RETURNING id;"
     values = [@name, @funds]
-    users = SqlRunner.run(sql, values)[0]
-    @id = users['id'].to_i
+    # pg_result = SqlRunner.run(sql, values)
+    # # binding.pry
+    # hash_containing_id = pg_result[0]
+    # # binding.pry
+    # id_string = hash_containing_id['id']
+    # # binding.pry
+    # id_integer = id_string.to_i()
+    # # binding.pry
+    # @id = id_integer
+    # binding.pry
+    hash_containing_id = SqlRunner.run(sql, values)[0]
+    @id = hash_containing_id['id'].to_i
   end
 
   # Read records
-  # def self.all()
-  #   sql = "SELECT * FROM customers"
-  #   all_customers = SqlRunner.run(sql)
-  #
-  # end
+  def self.all()
+    sql = "SELECT * FROM customers"
+    all_customers = SqlRunner.run(sql)
+    result = all_customers.map { |customer| Customer.new(customer) }
+    return result
+  end
   #
   # # Delete records
   # def self.delete_all()

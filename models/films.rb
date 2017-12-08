@@ -22,9 +22,12 @@ class Film
   end
 
   # Read records
-  # def self.all()
-  #
-  # end
+  def self.all()
+    sql = "SELECT * FROM films"
+    all_films_hash = SqlRunner.run(sql)
+    result = all_films_hash.map { |film| Film.new(film) }
+    return result
+  end
   #
   # # Delete records
   # def self.delete_all()
