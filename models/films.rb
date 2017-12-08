@@ -12,9 +12,14 @@ class Film
   end
 
   # Create/ update record
-  # def save()
-  #
-  # end
+  def save()
+    sql = "INSERT INTO films (title, price)
+          VALUES ($1, $2)
+          RETURNING id;"
+    values = [@title, @price]
+    users = SqlRunner.run(sql, values)[0]
+    @id = users['id'].to_i
+  end
 
   # Read records
   # def self.all()

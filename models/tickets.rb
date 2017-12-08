@@ -12,9 +12,14 @@ class Ticket
   end
 
   # Create/ update record
-  # def save()
-  #
-  # end
+  def save()
+    sql = "INSERT INTO tickets (customer_id, film_id)
+          VALUES ($1, $2)
+          RETURNING id;"
+    values = [@customer_id, @film_id]
+    users = SqlRunner.run(sql, values)[0]
+    @id = users['id'].to_i
+  end
 
   # Read records
   # def self.all()
