@@ -11,4 +11,19 @@ class Film
     @price = options['price'].to_i
   end
 
+  # Create/ update record
+  # def save()
+  #
+  # end
+
+  # Read records
+  # def self.all()
+  #
+  # end
+  #
+  # # Delete records
+  # def self.delete_all()
+  #
+  # end
+
 end
