@@ -53,6 +53,7 @@ attr_accessor :name, :funds
     hash_containing_id = SqlRunner.run(sql, values)
   end
 
+  # Which films a specific customer has booked to see
   def films()
     sql = "SELECT DISTINCT films.*
           FROM films

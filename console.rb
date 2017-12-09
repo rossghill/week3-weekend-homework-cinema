@@ -24,17 +24,12 @@ ticket1 = Ticket.new("customer_id" => customer1.id, "film_id" => film1.id)
 ticket1.save()
 ticket2 = Ticket.new("customer_id" => customer1.id, "film_id" => film2.id)
 ticket2.save()
+ticket3 = Ticket.new("customer_id" => customer1.id, "film_id" => film2.id)
+ticket3.save()
 
-customers = Customer.all
+all_customers = Customer.all()
 all_films = Film.all()
 all_tickets = Ticket.all()
-
-
-# customer3 = Customer.new({"name" => "Richard", "funds" => "23.00"})
-# customer3.save()
-#
-
-#
 
 
 binding.pry

@@ -42,4 +42,17 @@ class Film
     hash_containing_id = SqlRunner.run(sql, values)
   end
 
+  # Which customers are coming to see the specified film
+  def customers()
+    sql = "SELECT DISTINCT customers.*
+          FROM customers
+          INNER JOIN tickets
+          ON tickets.customer_id = customers.id
+          WHERE film_id = $1"
+    values = [@id]
+    customer_hash = SqlRunner.run(sql, values)
+    result = customer_hash.map {|customer| Customer.new(customer) }
+    return result
+  end
+
 end
