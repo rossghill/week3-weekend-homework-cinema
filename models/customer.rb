@@ -39,7 +39,7 @@ attr_accessor :name, :funds
     result = all_customers.map { |customer| Customer.new(customer) }
     return result
   end
-  #
+
   # # Delete records
   def self.delete_all()
     sql = "DELETE FROM customers"
@@ -51,6 +51,18 @@ attr_accessor :name, :funds
           WHERE id = $1"
     values = [@id]
     hash_containing_id = SqlRunner.run(sql, values)
+  end
+
+  def films()
+    sql = "SELECT DISTINCT films.*
+          FROM films
+          INNER JOIN tickets
+          ON tickets.customer_id = customer_id
+          WHERE tickets.customer_id = $1"
+          values = [@id]
+          film_hashes = SqlRunner.run(sql, values)
+          result = film_hashes.map {|film| Film.new(film)}
+          return result
   end
 
 
