@@ -41,8 +41,18 @@ attr_accessor :name, :funds
   end
   #
   # # Delete records
-  # def self.delete_all()
-  #
-  # end
+  def self.delete_all()
+    sql = "DELETE FROM customers"
+    SqlRunner.run(sql)
+  end
+
+  def delete_customer()
+    sql = "DELETE FROM customers
+          WHERE id = $1"
+    values = [@id]
+    hash_containing_id = SqlRunner.run(sql, values)
+  end
+
+
 
 end

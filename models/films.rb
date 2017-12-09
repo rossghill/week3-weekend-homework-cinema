@@ -30,8 +30,16 @@ class Film
   end
   #
   # # Delete records
-  # def self.delete_all()
-  #
-  # end
+  def self.delete_all()
+    sql = "DELETE FROM customers"
+    SqlRunner.run(sql)
+  end
+
+  def delete_film()
+    sql = "DELETE FROM films
+          WHERE id = $1"
+    values = [@id]
+    hash_containing_id = SqlRunner.run(sql, values)
+  end
 
 end

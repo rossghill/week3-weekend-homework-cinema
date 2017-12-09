@@ -30,9 +30,21 @@ class Ticket
   end
 
   # Delete records
-  # def self.delete_all()
-  #
-  # end
+  def self.delete_all()
+    sql = "DELETE FROM tickets"
+    SqlRunner.run(sql)
+  end
+
+  def delete_ticket()
+    sql = "DELETE FROM tickets
+          WHERE id = $1"
+    values = [@id]
+    hash_containing_id = SqlRunner.run(sql, values)
+  end
+
+  # For extensions
+  # SELECT COUNT(*) FROM customers
+  # WHERE film_id = $1
 
 
 end
