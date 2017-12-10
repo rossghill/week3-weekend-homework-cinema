@@ -8,7 +8,7 @@ Ticket.delete_all()
 Customer.delete_all()
 Film.delete_all()
 
-customer1 = Customer.new({"name" => "Ross", "funds" => "19.50"})
+customer1 = Customer.new({"name" => "Ross", "funds" => "19.00"})
 customer1.save()
 customer2 = Customer.new({"name" => "Michael", "funds" => "42.00"})
 customer2.save()

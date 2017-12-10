@@ -88,14 +88,9 @@ attr_accessor :name, :funds
   end
 
 # Buy ticket
-  # def buy_ticket(film)
-  #   sql = "INSERT INTO tickets (customer_id, film_id)
-  #         VALUES ($1, $2)"
-  #   values = [@id, @film_id]
-  #   new_funds = @funds -= film.price
-  #   hash = SqlRunner.run(sql, values)
-  #   update = hash.map{|ticket| Ticket.new(ticket)}
-  #   save()
-  # end
+  def self.buy_ticket(customer, film)
+   result = customer.funds - film.price
+   return result
+  end
 
 end
