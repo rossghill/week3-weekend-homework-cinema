@@ -29,6 +29,15 @@ class Ticket
     return result
   end
 
+  def self.find_ticket(id)
+    sql = "SELECT * FROM tickets
+          WHERE id = $1"
+    values = [id]
+    tickets_hash = SqlRunner.run(sql, values)[0]
+    ticket = Ticket.new(tickets_hash)
+    return ticket
+  end
+
   # Delete records
   def self.delete_all()
     sql = "DELETE FROM tickets"

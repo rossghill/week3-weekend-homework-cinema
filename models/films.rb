@@ -28,6 +28,15 @@ class Film
     result = all_films_hash.map { |film| Film.new(film) }
     return result
   end
+
+  def self.find_film(id)
+    sql = "SELECT * FROM films
+          WHERE id = $1"
+    values = [id]
+    films_hash = SqlRunner.run(sql, values)[0]
+    film = Film.new(films_hash)
+    return film
+  end
   #
   # # Delete records
   def self.delete_all()
