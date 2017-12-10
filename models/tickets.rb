@@ -42,9 +42,5 @@ class Ticket
     hash_containing_id = SqlRunner.run(sql, values)
   end
 
-  # For extensions
-  # SELECT COUNT(*) FROM customers
-  # WHERE film_id = $1
-
 
 end

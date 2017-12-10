@@ -40,6 +40,15 @@ attr_accessor :name, :funds
     return result
   end
 
+  def self.find_customer(id)
+    sql = "SELECT * FROM customers
+          WHERE id = $1"
+    values = [id]
+    customers_hash = SqlRunner.run(sql, values)[0]
+    customer = Customer.new(customers_hash)
+    return customer
+  end
+
   # # Delete records
   def self.delete_all()
     sql = "DELETE FROM customers"
@@ -60,12 +69,31 @@ attr_accessor :name, :funds
           INNER JOIN tickets
           ON tickets.customer_id = customer_id
           WHERE tickets.customer_id = $1"
-          values = [@id]
-          film_hashes = SqlRunner.run(sql, values)
-          result = film_hashes.map {|film| Film.new(film)}
-          return result
+    values = [@id]
+    film_hashes = SqlRunner.run(sql, values)
+    result = film_hashes.map {|film| Film.new(film)}
+    return result
   end
 
+  # For extensions
+  def ticket_count()
+    # sql = "SELECT * FROM customers
+    #       WHERE id = $1"
+    # values = [@id]
+    # hash = SqlRunner.run(sql, values)
+    # customer.count()
+    return films.count()
+  end
 
+# Buy ticket
+  # def buy_ticket
+  #   sql = "INSERT INTO customers (name, funds)
+  #         VALUES ($1, $2)
+  #         RETURNING id;"
+  #   values = [@name, @funds]
+  #   hash_containing_id = SqlRunner.run(sql, values)[0]
+  #   @id = hash_containing_id['id'].to_i
+  #   new_funds = @funds -= @price
+  # end
 
 end
