@@ -76,24 +76,26 @@ attr_accessor :name, :funds
   end
 
   # For extensions
-  def ticket_count()
+  def self.ticket_count(customer_id)
     # sql = "SELECT * FROM customers
     #       WHERE id = $1"
-    # values = [@id]
-    # hash = SqlRunner.run(sql, values)
-    # customer.count()
-    return films.count()
+    customer = Customer.find_customer(customer_id)
+    return customer.tickets.count
+  #   values = [customer_id]
+  #   hash = SqlRunner.run(sql, values)
+  #   customer = Customer.new(hash)
+  #   return customer
   end
 
 # Buy ticket
-  # def buy_ticket
-  #   sql = "INSERT INTO customers (name, funds)
-  #         VALUES ($1, $2)
-  #         RETURNING id;"
-  #   values = [@name, @funds]
-  #   hash_containing_id = SqlRunner.run(sql, values)[0]
-  #   @id = hash_containing_id['id'].to_i
-  #   new_funds = @funds -= @price
+  # def buy_ticket(film)
+  #   sql = "INSERT INTO tickets (customer_id, film_id)
+  #         VALUES ($1, $2)"
+  #   values = [@id, @film_id]
+  #   new_funds = @funds -= film.price
+  #   hash = SqlRunner.run(sql, values)
+  #   update = hash.map{|ticket| Ticket.new(ticket)}
+  #   save()
   # end
 
 end
