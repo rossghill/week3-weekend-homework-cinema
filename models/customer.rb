@@ -11,7 +11,6 @@ attr_accessor :name, :funds
     @funds = options['funds'].to_i
   end
 
-
   # Create/ update record
   def save()
     sql = "INSERT INTO customers (name, funds)
@@ -49,7 +48,7 @@ attr_accessor :name, :funds
     return customer
   end
 
-  # # Delete records
+  # Delete records
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
@@ -76,6 +75,13 @@ attr_accessor :name, :funds
   end
 
   # For extensions
+
+  # Buy ticket
+  def self.buy_ticket(customer, film)
+     result = customer.funds - film.price
+     return result
+  end
+
   def self.ticket_count(customer_id)
     # sql = "SELECT * FROM customers
     #       WHERE id = $1"
@@ -85,12 +91,6 @@ attr_accessor :name, :funds
   #   hash = SqlRunner.run(sql, values)
   #   customer = Customer.new(hash)
   #   return customer
-  end
-
-# Buy ticket
-  def self.buy_ticket(customer, film)
-   result = customer.funds - film.price
-   return result
   end
 
 end

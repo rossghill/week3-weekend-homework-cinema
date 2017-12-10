@@ -51,5 +51,4 @@ class Ticket
     hash_containing_id = SqlRunner.run(sql, values)
   end
 
-
 end

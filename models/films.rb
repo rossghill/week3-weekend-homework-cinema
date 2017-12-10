@@ -37,8 +37,8 @@ class Film
     film = Film.new(films_hash)
     return film
   end
-  #
-  # # Delete records
+
+  # Delete records
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)

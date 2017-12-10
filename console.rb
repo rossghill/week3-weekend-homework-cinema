@@ -31,6 +31,5 @@ all_customers = Customer.all()
 all_films = Film.all()
 all_tickets = Ticket.all()
 
-
 binding.pry
 nil
